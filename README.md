@@ -27,3 +27,8 @@ Issues have been disabled on this repo, if you do find an issue or have a questi
 
 # IonicFirebase-TODO
 Simple TODO App using firebase
+
+## Setup firebase
+1. Add firebase JS lib & it angular plugin via CDN
+2. add it module to the ionic app definitiion: angular.module("starter", ["ionic", "firebase"])
+Those steps let us use the dependencies to store and sync data with AngularFire using: ```$firebaseArray```, ```$firebaseObject```, and ```$firebaseAuth```.
