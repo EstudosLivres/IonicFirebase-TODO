@@ -42,3 +42,9 @@ Just create it Factory as app module child:
     return $firebaseArray(itemsRef);
   })
 ```
+
+## Make sure social auth work on devices
+Our app works in the browser, but because there is no concept of redirects on mobile we need to add Cordova InAppBrowser as a dependency to make sure authentication works on iOS and Android:
+```
+  $ cordova plugins add org.apache.cordova.inappbrowser
+```
