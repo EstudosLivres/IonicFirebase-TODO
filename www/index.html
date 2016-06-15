@@ -28,12 +28,19 @@
   </head>
   <body ng-app="starter">
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content>
-      </ion-content>
-    </ion-pane>
+    <ion-header-bar class="bar-positive top">
+      <h1 class="title">Items</h1>
+      <button class="button button-icon ion-plus" ng-click="addItem()">
+      </button>
+    </ion-header-bar>
+
+    <ion-content>
+      <ion-list>
+        <ion-item ng-repeat="item in items">
+          {{item.name}}
+        </ion-item>
+      </ion-list>
+    </ion-content>
+
   </body>
 </html>
