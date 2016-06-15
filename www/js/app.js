@@ -5,6 +5,27 @@
 // the 2nd parameter is an array of 'requires'
 angular.module("starter", ["ionic", "firebase"])
 
+// To save data & sync data with firebase, we'll create an Items factory that uses $firebaseArray
+.factory("Items", function($firebaseArray) {
+  var itemsRef = new Firebase("https://todo-32c55.firebaseio.com/items");
+  return $firebaseArray(itemsRef);
+})
+
+// List Controller definition
+.controller("ListCtrl", function($scope, Items) {
+  $scope.items = Items;
+  $scope.addItem = function() {
+    // Prompt to type the item
+    var name = prompt("What do you need to buy?");
+    if (name) {
+      // append it typed item to the firebase
+      $scope.items.$add({
+        "name": name
+      });
+    }
+  };
+})
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {

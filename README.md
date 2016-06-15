@@ -32,3 +32,13 @@ Simple TODO App using firebase
 1. Add firebase JS lib & it angular plugin via CDN
 2. add it module to the ionic app definitiion: angular.module("starter", ["ionic", "firebase"])
 Those steps let us use the dependencies to store and sync data with AngularFire using: ```$firebaseArray```, ```$firebaseObject```, and ```$firebaseAuth```.
+
+
+## Add firebase SyncData
+Just create it Factory as app module child:
+```
+  .factory("Items", function($firebaseArray) {
+    var itemsRef = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com/items");
+    return $firebaseArray(itemsRef);
+  })
+```
