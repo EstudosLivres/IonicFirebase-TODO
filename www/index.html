@@ -28,19 +28,31 @@
   </head>
   <body ng-app="starter">
 
-    <ion-header-bar class="bar-positive top">
-      <h1 class="title">Items</h1>
-      <button class="button button-icon ion-plus" ng-click="addItem()">
+    <div ng-hide="authData" class="card" ng-click="login()">
+      <button class="item">
+        Log In with Facebook
       </button>
-    </ion-header-bar>
+    </div>
 
-    <ion-content>
-      <ion-list>
-        <ion-item ng-repeat="item in items">
-          {{item.name}}
-        </ion-item>
-      </ion-list>
-    </ion-content>
+    <div class="card" ng-show="authData">
+      <ion-header-bar class="bar-positive top">
+        <h1 class="title">Items</h1>
+        <button class="button button-icon ion-plus" ng-click="addItem()">
+        </button>
+      </ion-header-bar>
+
+      <ion-content>
+        <div class="item item-text-wrap">
+          Hello {{authData.facebook.displayName}}!
+        </div>
+
+        <ion-list>
+          <ion-item ng-repeat="item in items">
+            {{item.name}}
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </div>
 
   </body>
 </html>
