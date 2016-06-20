@@ -11,58 +11,20 @@ angular.module("starter", ["ionic", "firebase"])
   return $firebaseArray(itemsRef);
 })
 
-// Auth factory
-.factory("Auth", function($firebaseAuth) {
-  var usersRef = new Firebase("https//todo-32c55.firebaseio.com/users");
-  return $firebaseAuth(usersRef);
-})
-
-// List Controller definition (on params we have injected the Items & Auth factory, which are reusables)
-.controller("ListCtrl", function($scope, Items, Auth) {
-  $scope.items = Items;
-  $scope.addItem = function() {
-    // Prompt to type the item
-    var name = prompt("What do you need to buy?");
-    if (name) {
-      // append it typed item to the firebase
-      $scope.items.$add({
-        "name": name
-      });
-    }
-  };
-
-  // Facebook firebase auth method
-  $scope.login = function() {
-    // considering only device: Auth.$authWithOAuthRedirect("facebook");
-
-    // Workaround to run it code on emulate & from device
-    Auth.$authWithOAuthRedirect("facebook").then(function(authData) {
-      // User successfully logged in
-    }).catch(function(error) {
-      if (error.code === "TRANSPORT_UNAVAILABLE") {
-        Auth.$authWithOAuthPopup("facebook").then(function(authData) {
-          // User successfully logged in. We can log to the console
-          // since we’re using a popup here
-          console.log(authData);
+// List Controller definition (on params we have injected the Items factory, which are reusables)
+.controller("ListCtrl", function($scope, Items) {
+    $scope.items = Items;
+    $scope.addItem = function () {
+      // Prompt to type the item
+      var name = prompt("What do you need to buy?");
+      if (name) {
+        // append it typed item to the firebase
+        $scope.items.$add({
+          "name": name
         });
-      } else {
-        // Another error occurred
-        console.log(error);
       }
-    });
-  };
-
-  // Listener which listen the Auth state change
-  Auth.$onAuth(function(authData) {
-    if (authData === null) {
-      console.log("Not logged in yet");
-    } else {
-      console.log("Logged in as", authData.uid);
-    }
-
-    $scope.authData = authData; // This will display the user's name in our view
-  });
-})
+    };
+  })
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

@@ -26,15 +26,9 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
   </head>
-  <body ng-app="starter">
+  <body ng-app="starter" ng-controller="ListCtrl">
 
-    <div ng-hide="authData" class="card" ng-click="login()">
-      <button class="item">
-        Log In with Facebook
-      </button>
-    </div>
-
-    <div class="card" ng-show="authData">
+    <div class="card">
       <ion-header-bar class="bar-positive top">
         <h1 class="title">Items</h1>
         <button class="button button-icon ion-plus" ng-click="addItem()">
@@ -42,10 +36,6 @@
       </ion-header-bar>
 
       <ion-content>
-        <div class="item item-text-wrap">
-          Hello {{authData.facebook.displayName}}!
-        </div>
-
         <ion-list>
           <ion-item ng-repeat="item in items">
             {{item.name}}

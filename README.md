@@ -36,6 +36,7 @@ Those steps let us use the dependencies to store and sync data with AngularFire 
 
 ## Add firebase SyncData
 Just create it Factory as app module child:
+
 ```
   .factory("Items", function($firebaseArray) {
     var itemsRef = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com/items");
@@ -45,6 +46,14 @@ Just create it Factory as app module child:
 
 ## Make sure social auth work on devices
 Our app works in the browser, but because there is no concept of redirects on mobile we need to add Cordova InAppBrowser as a dependency to make sure authentication works on iOS and Android:
+
 ```
-  $ cordova plugins add org.apache.cordova.inappbrowser
+  $ cordova plugin add cordova-plugin-inappbrowser
+```
+
+## Add & Config white-list
+Prevent security issues by foreign requests
+
+```
+  $ cordova plugin add cordova-plugin-whitelist
 ```
